@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "AI PR Title Generator",
+    "version": "1.0",
+    "description": "Suggest pull request titles using AI",
+    "permissions": ["scripting", "activeTab"],
+    "host_permissions": ["https://github.com/*"],
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://github.com/*"],
+        "js": ["content_script.js"],
+        "run_at": "document_idle"
+      }
+    ]
+  }
