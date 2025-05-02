@@ -8,7 +8,7 @@ Automatically generate better pull request titles based on your commit messages 
 
 - ✨ Adds a "Generate Title" button beside the pull request title field.
 - ✨ Analyzes all commit messages in the PR.
-- ✨ Sends them to Azure OpenAI Service to suggest a concise and descriptive PR title.
+- ✨ Sends the messages to an AI model (OpenAI or Azure OpenAI) to generate a meaningful title.
 - ✨ Smartly detects if you are on a PR creation page before injecting anything.
 - ✨ Clean, native GitHub-style UI with a smooth loading indicator.
 
@@ -18,27 +18,35 @@ Automatically generate better pull request titles based on your commit messages 
 
 1. **Clone or Download** this repository.
 
-2. **Get a Azure OpenAI Service API Key**
+2. **Get an API Key**
 
-   - Go to [Azure OpenAI Service](https://azure.microsoft.com/en-us/products/ai-services/openai-service).
-   - Sign up and create an API token.
+   - For OpenAI: [https://platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys)
+   - For Azure OpenAI: Set up a resource in Azure and generate an endpoint and key.
 
-3. **Update `background.js`**
+3. **Configure the Extension**
+   Open `background.js` and edit the following configuration:
 
-   - Replace `api_key` with your actual Azure OpenAI service token.
-   - Replace `url` with your actual Azure OpenAI service url
+   ```js
+   const config = {
+     provider: 'openai', // or "azure"
+     apiKey: 'YOUR_API_KEY_HERE',
+     endpoint: '', // required only for Azure
+     model: 'gpt-3.5-turbo', // or your Azure deployment name
+   }
+   ```
 
 4. **Load the Extension in Chrome**
 
-   - Open Chrome and go to `chrome://extensions/`
-   - Enable **Developer mode** (top right).
+   - Go to `chrome://extensions/`
+   - Enable **Developer mode** (top right corner).
    - Click **Load unpacked**.
-   - Select the project folder.
+   - Select the root folder of this project.
 
 5. **Usage**
-   - Navigate to a GitHub pull request creation page.
-   - You'll see a ✨ **Generate Title** button next to the title input.
-   - Click it to auto-generate a PR title based on your commits!
+
+   - Open a GitHub pull request creation page.
+   - You’ll see a ✨ **Generate Title** button next to the PR title input field.
+   - Click it to generate a title based on your commits!
 
 ---
 
@@ -67,8 +75,6 @@ Automatically generate better pull request titles based on your commit messages 
 ## Credits
 
 Built with ☕️ and JavaScript.
-
-<!-- Thanks to Hugging Face for their amazing AI models. -->
 
 ---
 
